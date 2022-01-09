@@ -128,7 +128,7 @@ class SPField(SentencePieceProcessor, Field):
         files = ','.join(files)  # remove duplicates
         arg = f"--input={files} --vocab_size={vocab_size} --model_prefix={model_prefix}" \
               f" --model_type={model_type} --pad_id={cls.pad_idx} --bos_id={cls.bos_idx}" \
-              f" --eos_id={cls.eos_idx} --unk_id={cls.unk_idx} --hard_vocab_limit=false"
+              f" --eos_id={cls.eos_idx} --unk_id={cls.unk_idx} --hard_vocab_limit=false --split_by_whitespace=false" 
         if char_coverage > 0:
             assert 0 < char_coverage <= 1
             arg += f" --character_coverage={char_coverage}"

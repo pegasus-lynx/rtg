@@ -160,9 +160,10 @@ class NLField(Field):
         self.codec: EncoderScheme = load_scheme(path)
         self.vocab: List[Type] = self.codec.table
         log.info(f'Loaded {len(self.codec)} types from {path}')
-        for tok, idx in self.reserved():  # reserved are reserved
-            # Todo swap it with nlcodec.Reserved
-            assert self.vocab[idx].name == tok
+        if self.codec.name not in ["byte", "factorizer"]:
+            for tok, idx in self.reserved():  # reserved are reserved
+                # Todo swap it with nlcodec.Reserved
+                assert self.vocab[idx].name == tok
 
     def encode_as_ids(self, text: str, add_bos=False, add_eos=False) -> Array:
         ids = self.codec.encode(text)

@@ -160,7 +160,7 @@ class NLField(Field):
         self.codec: EncoderScheme = load_scheme(path)
         self.vocab: List[Type] = self.codec.table
         log.info(f'Loaded {len(self.codec)} types from {path}')
-        if self.codec.name not in ["byte", "factorizer"]:
+        if self.codec.name not in ["byte", "factorizer", "factorizer266"]:
             for tok, idx in self.reserved():  # reserved are reserved
                 # Todo swap it with nlcodec.Reserved
                 assert self.vocab[idx].name == tok
